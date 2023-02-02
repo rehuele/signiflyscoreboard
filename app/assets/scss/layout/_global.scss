@@ -66,6 +66,25 @@ header {
 	}
 }
 
+// Button
+// ------------------------------------
+
 .btn-admin {
+	padding: calc(var(--spacer)/2) var(--spacer);
+	min-width: 140px;
+	font-size: 16px;
+	font-weight: 400;
+	font-family: var(--font-primary);
+	text-transform: uppercase;
+	color: var(--white);
+	border: 2px solid var(--white);
+	border-radius: 8px;
+	background-color: transparent;
 	cursor: pointer;
+	transition: all 0.4s;
+	
+	&:hover {
+		color: var(--primary-color);
+		background-color: var(--white);
+	}
 }

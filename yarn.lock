@@ -2768,16 +2768,6 @@ fsevents@~2.3.2:
   languageName: node
   linkType: hard
 
-"scoreboard@workspace:.":
-  version: 0.0.0-use.local
-  resolution: "scoreboard@workspace:."
-  dependencies:
-    "@parcel/transformer-sass": ^2.8.2
-    parcel: ^2.0.0-rc.0
-    parcel-plugin-asset-copier: ^1.1.0
-  languageName: unknown
-  linkType: soft
-
 "semver@npm:^5.7.0, semver@npm:^5.7.1":
   version: 5.7.1
   resolution: "semver@npm:5.7.1"
@@ -2811,6 +2801,16 @@ fsevents@~2.3.2:
   checksum: a2f098f247adc367dffc27845853e9959b9e88b01cb301658cfe4194352d8d2bb32e18467c786a7fe15f1d44b233ea35633d076d5e737870b7139949d1ab6318
   languageName: node
   linkType: hard
+
+"signiflyscoreboard@workspace:.":
+  version: 0.0.0-use.local
+  resolution: "signiflyscoreboard@workspace:."
+  dependencies:
+    "@parcel/transformer-sass": ^2.8.2
+    parcel: ^2.0.0-rc.0
+    parcel-plugin-asset-copier: ^1.1.0
+  languageName: unknown
+  linkType: soft
 
 "slash@npm:^1.0.0":
   version: 1.0.0
