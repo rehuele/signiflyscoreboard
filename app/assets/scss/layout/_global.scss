@@ -1,0 +1,71 @@
+// ----------------------------------------------------------------------------
+// Global / Main
+// ----------------------------------------------------------------------------
+
+@use '../config' as *;
+@use '../mixin/rem' as mix;
+
+// Layout + Images + Extras
+// ------------------------------------
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-primary);
+  font-weight: 400;
+  background-color: var(--white);
+
+	&.is-active {
+		overflow-x: hidden;
+	}
+}
+
+.container {
+  position: relative;
+  width: 100%;
+  @include mix.rem(max-width, 912px);
+  padding: 0 var(--spacer);
+  margin: 0 auto;
+}
+
+h1 {
+	position: relative;
+	margin-top: calc(var(--spacer) * 3);
+
+	span {
+		position: absolute;
+		top: -5px;
+		font-size: 18px;
+		font-weight: 300;
+		vertical-align: super;
+	} 
+}
+
+.section-title {
+  padding-top: calc(var(--spacer) * 2);
+  margin-top: calc(var(--spacer) * 10);
+  margin-bottom: calc(var(--spacer) * 2);
+  font-size: 32px;
+  font-weight: 400;
+	border-top: 1px solid var(--secondary-color);
+}
+
+header {
+	padding-top: var(--spacer);
+}
+
+.material-symbols-outlined {
+	display: block;
+	font-size: 26px; 
+
+	&:hover {
+		cursor: pointer;
+	}
+}
+
+.btn-admin {
+	cursor: pointer;
+}

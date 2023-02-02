@@ -1,0 +1,75 @@
+// ----------------------------------------------------------------------------
+// Table
+// ----------------------------------------------------------------------------
+
+@use '../config' as *;
+@use '../mixin/' as mix;
+
+.table-wrap {
+	margin: 2em auto;
+	max-width: 960px;
+  font-size: 14px;
+	border-radius: 10px;
+	box-shadow: 0 0 2px 0 rgba(#303030, 0.1), 0 4px 4px 0 rgba(#303030, 0.1);
+
+	@media (min-width: $lg) {
+		font-size: 1rem;
+	}
+}
+
+.table-grid {
+	position: relative;
+	display: grid;
+	grid-template-rows: auto;
+	width: 100%;
+	overflow: auto;
+	border-radius: 10px;
+	transition: all 0.3s ease-in-out;
+}
+
+.table-row {
+	display: grid;
+	grid-template-columns: 50px  100px repeat(4, minmax(70px, auto));
+	background-color: var(--white);
+	
+	@media (min-width: $md) {
+		grid-template-columns: 50px 1fr repeat(4, 0.5fr);
+	}
+}
+
+.table-row:nth-child(even),
+.table-row:nth-child(even) .fixed-col {
+	background-color: hsl(220, 33%, 96%);
+}
+
+.table-row > div {
+	padding: 0.5em;
+	align-self: center;
+	text-align: center;
+}
+
+.table-header {
+	padding: 0;
+	font-weight: 600;
+	color: var(--primary-color);
+
+	.fixed-header & {
+		z-index: 5;
+		position: sticky;
+		top: 0;
+		border-bottom: 2px solid #3030301a;
+	}
+}
+
+.fixed-col {
+	z-index: 4;
+	position: sticky;
+	left: 0;
+	border-right: 0.35px solid var(--offgrey);
+	box-shadow: 1px 0 2px 0 hsl(220, 6%, 62%, 0.78);
+	background-color: var(--white);
+
+	@media (min-width: $md) {
+		box-shadow: none;
+	}
+}

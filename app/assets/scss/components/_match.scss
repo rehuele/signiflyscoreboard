@@ -1,0 +1,124 @@
+// ----------------------------------------------------------------------------
+// Match
+// ----------------------------------------------------------------------------
+
+@use '../config' as *;
+@use '../mixin/' as mix;
+
+.fs-match {
+	margin-bottom: calc(var(--spacer)/2);
+	border-radius: 10px;
+	background-color: var(--white);
+	box-shadow: 0 0 2px 0 rgba(#303030, 0.1), 0 4px 4px 0 rgba(#303030, 0.1);
+}
+
+.fs-match__header {
+	padding: calc(var(--spacer)/2) var(--spacer);
+	text-align: right;
+	border-bottom: 2px solid rgba(#303030, 0.1);
+}
+
+.fs-match__number {
+	margin: 0;
+	font-size: 1rem;
+	font-weight: 500;
+	color: var(--offgrey);
+}
+
+.fs-match__content {
+	display: grid;
+	grid-template-columns: 1fr;
+	grid-gap: var(--spacer);
+	justify-content: space-between;
+	padding: var(--spacer);
+
+	@media (min-width: $md) {
+		grid-template-columns: 1fr 16px 1fr;
+		padding: var(--spacer) calc(var(--spacer) * 2);
+  }
+}
+
+.fs-team {
+	display:flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.fs-team__divider {
+	display: none;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	font-size: 38px;
+	color: var(--offgrey);
+
+	@media (min-width: $md) {
+		display: flex;
+	}
+}
+
+.fs-team__logo {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+	background-color: var(--white);
+	box-shadow: 0 4px 4px 0 rgba(#303030, 0.15), 0 0 0 8px #f3f5f9;
+
+	img {
+		width: 50px;
+	}
+
+	@media (min-width: $md) {
+		.fs-name__team-2 & {
+			order: 1;
+		}
+	}
+}
+
+.fs-team__name {
+	padding-bottom: calc(var(--spacer)/2);
+	margin-bottom: var(--spacer);
+	border-bottom: 1px solid var(--offgrey);
+	font-size: 20px;
+	font-weight: 600;
+	text-align: center;
+}
+
+.fs-team__players {
+	font-size: 14px;
+	font-weight: 400;
+	line-height: 1.2;
+	text-align: center;
+	color: var(--secondary-color);
+
+	@media (min-width: $md) {
+		li {
+			display: inline;
+		}
+
+		li:nth-child(2):before {
+			content: ', ';
+		}
+	}
+}
+
+.fs-team__score-1,
+.fs-team__score-2 {
+	width: 62px;
+	height: 62px;
+	font-size: 38px;
+	font-weight: 600;
+	text-align: right;
+	color: hsl(210, 33%, 16%);
+	border: none;
+
+	@media (min-width: $md) {
+		.fs-name__team-2 & {
+			order: -1;
+		}
+	}
+}

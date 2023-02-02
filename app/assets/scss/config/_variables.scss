@@ -1,0 +1,27 @@
+// ----------------------------------------------------------------------------
+// Variables
+// ----------------------------------------------------------------------------
+
+:root {
+  --primary-color: hsl(0, 0%, 18%); // #2f2f2f
+  --secondary-color: hsl(219, 6%, 57%); // #8a8f98 #bec0bf
+  --offgrey: hsl(255, 6%, 86%); // #dbdade #f5f5f5 #f3f5f9
+  --black: rgb(0, 0, 0);
+  --white: rgb(255, 255, 255);
+  --grey: hsl(220, 6%, 62%); // #979ba3
+  --font-primary: 'Inter', Helvetica, Arial, sans-serif; // available font-weights (300, 400, 500, 600, 700, 800, 900)
+  --spacer: 1rem; // 16px
+}
+
+// Breakpoints
+$sm: 576px;
+$md: 768px;
+$lg: 1024px;
+$xl: 1440px;
+
+$breakpoints: (
+  sm: $sm,
+  md: $md,
+  lg: $lg,
+  xl: $xl,
+);

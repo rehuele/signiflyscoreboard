@@ -1,0 +1,31 @@
+// ----------------------------------------------------------------------------
+// Sidenav
+// ----------------------------------------------------------------------------
+
+@use '../config' as *;
+@use '../mixin/' as mix;
+
+.sidenav {
+	z-index: 10;
+	overflow-x: hidden;
+	overflow-y: scroll;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 230px;
+	height: 100%;
+	padding-top: calc(var(--spacer) * 4);
+	padding-right: var(--spacer);
+	padding-left: var(--spacer);
+	background-color: var(--primary-color);
+	transform: translate3d(-100%, 0, 0);
+	transition: 0.3s;
+}
+
+.is-active .sidenav {
+	transform: translate3d(0, 0, 0);
+}
+
+.is-active .page-wrapper {
+	transform: translate3d(240px, 0, 0);
+}

@@ -1,0 +1,78 @@
+// ----------------------------------------------------------------------------
+// Base
+// ----------------------------------------------------------------------------
+
+@use '../mixin/rem' as *;
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
+}
+
+h1 {
+  @include rem(margin-bottom, 20px);
+}
+
+h2 {
+  @include rem(margin-bottom, 18px);
+}
+
+h3 {
+  @include rem(margin-bottom, 16px);
+}
+
+h4 {
+  @include rem(margin-bottom, 14px);
+}
+
+h5,
+h6 {
+  @include rem(margin-bottom, 12px);
+}
+
+p {
+  @include rem(margin-bottom, 8px);
+  line-height: 1.5;
+}
+
+// Images
+// ------------------------------------
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+// SVG
+// ------------------------------------
+
+svg {
+  display: block;
+}
+
+// Unorderd Lists
+// ------------------------------------
+
+ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+// Anchor
+// ------------------------------------
+
+a {
+  text-decoration: underline;
+}
