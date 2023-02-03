@@ -6,7 +6,7 @@
   "source": "src/index.html",
   "scripts": {
     "clean": "rimraf dist .parcel-cache",
-    "toto": "rimraf app",
+    "toto": "rimraf docs",
     "dev": "parcel --open",
     "stage": "parcel build --no-optimize --no-source-maps --dist-dir docs --public-url '.'",
     "build": "parcel build --no-source-maps --dist-dir docs --public-url '.'"
