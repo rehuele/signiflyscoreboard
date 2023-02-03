@@ -77,7 +77,7 @@
         "Gianluigi Buffon"
       ],
       "image": {
-        "src": "assets/img/football-logos/logo-bayern-münchen.png",
+        "src": "assets/img/football-logos/logo-bayern-munchen.png",
         "alt": "bayern munich logo"
       }
     },
@@ -87,7 +87,7 @@
         "Cristiano Ronaldo"
       ],
       "image": {
-        "src": "/src/assets/img/football-logos/logo-newcastle-united.png",
+        "src": "assets/img/football-logos/logo-newcastle-united.png",
         "alt": "newcastle united logo"
       }
     }

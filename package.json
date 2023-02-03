@@ -8,8 +8,8 @@
     "clean": "rimraf dist .parcel-cache",
     "toto": "rimraf app",
     "dev": "parcel --open",
-    "stage": "parcel build --no-optimize --no-source-maps --dist-dir app --public-url '.'",
-    "build": "parcel build --no-source-maps --dist-dir app --public-url '.'"
+    "stage": "parcel build --no-optimize --no-source-maps --dist-dir docs --public-url '.'",
+    "build": "parcel build --no-source-maps --dist-dir docs --public-url '.'"
   },
   "packageManager": "yarn@3.0.2",
   "devDependencies": {
