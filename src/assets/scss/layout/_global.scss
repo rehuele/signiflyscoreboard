@@ -25,7 +25,6 @@ body {
 
 .container {
   position: relative;
-  width: 100%;
   @include mix.rem(max-width, 912px);
   padding: 0 var(--spacer);
   margin: 0 auto;
@@ -60,15 +59,10 @@ header {
 .material-symbols-outlined {
 	display: block;
 	font-size: 26px; 
-	// text-align: right;
 
 	&:hover {
 		cursor: pointer;
 	}
-
-	// .is-active & {
-	// 	text-align: left;
-	// }
 }
 
 // Button

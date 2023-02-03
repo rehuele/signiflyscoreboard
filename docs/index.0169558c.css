@@ -77,7 +77,6 @@ body.is-active {
 }
 
 .container {
-  width: 100%;
   max-width: 912px;
   max-width: 57rem;
   padding: 0 var(--spacer);
@@ -159,6 +158,11 @@ header {
 
 .is-active .sidenav {
   transform: translate3d(0, 0, 0);
+}
+
+.page-wrapper {
+  transition: all .3s;
+  position: relative;
 }
 
 .is-active .page-wrapper {
