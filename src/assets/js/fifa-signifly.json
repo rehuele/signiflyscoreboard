@@ -87,7 +87,7 @@
         "Cristiano Ronaldo"
       ],
       "image": {
-        "src": "assets/img/football-logos/logo-newcastle-united.png",
+        "src": "/src/assets/img/football-logos/logo-newcastle-united.png",
         "alt": "newcastle united logo"
       }
     }

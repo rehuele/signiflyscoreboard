@@ -1,13 +1,15 @@
 {
   "name": "signiflyscoreboard",
-  "description": "",
+  "description": "Signifly tournament.",
   "author": "Reh Ernest",
   "browserslist": "> 0.5%, last 2 versions, not dead",
-  "source": "app/index.html",
+  "source": "src/index.html",
   "scripts": {
-    "clean": "rimraf dist .cache",
-    "dev": "parcel",
-    "build": "parcel build"
+    "clean": "rimraf dist .parcel-cache",
+    "toto": "rimraf app",
+    "dev": "parcel --open",
+    "stage": "parcel build --no-optimize --no-source-maps --dist-dir app --public-url '.'",
+    "build": "parcel build --no-source-maps --dist-dir app --public-url '.'"
   },
   "packageManager": "yarn@3.0.2",
   "devDependencies": {
@@ -15,35 +17,6 @@
   },
   "dependencies": {
     "@parcel/transformer-sass": "^2.8.2",
-    "parcel-plugin-asset-copier": "^1.1.0"
-  },
-  "assetsPath": "assets/img",
-  "parcel-plugin-structurize": {
-    "rules": [
-      {
-        "match": "index.html",
-        "folder": "app"
-      },
-      {
-        "match": "*.html",
-        "folder": "app"
-      },
-      {
-        "match": "*.css",
-        "folder": "app/assets/css"
-      },
-      {
-        "match": "*.{eot,ttf,woff,woff2}",
-        "folder": "app/assets/fonts"
-      },
-      {
-        "match": "*.{jpg,jpeg,png,gif,svg,webp}",
-        "folder": "app/assets/img"
-      },
-      {
-        "match": "*.js",
-        "folder": "app/assets/js"
-      }
-    ]
+    "rimraf": "^4.1.2"
   }
 }

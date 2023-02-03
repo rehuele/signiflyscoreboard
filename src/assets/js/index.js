@@ -17,15 +17,6 @@ import data from './fifa-signifly.json';
 
 // getData('stolinski').catch(handleError);
 
-/* 
-1. Call API || Fetch JSON
-2. Check if there is a JSON in localStorage use that else load local storage JSON
-3. Display Matches
-4. Calculate Leaderboard
-5. Display Leaderboard results
-6. Update Match scores
-*/
-
 const fsMatches = document.querySelector('.fs-matches');
 const fsScoreboard = document.querySelector('.fs-scoreboard');
 const fsMenu = document.querySelector('.fs-menu');
@@ -142,7 +133,7 @@ function handleInput(e) {
 
 // Calculate Leaderboard
 function calculateLeaderboard() {
-  leaderboard = [];
+  const leaderboard = [];
 
   fifasignifly.matches.forEach((match, index) => {
     const team1Index = leaderboard.findIndex((team) => team.id === match.team1);
@@ -220,7 +211,6 @@ function calculateLeaderboard() {
 
 // Display Leaderboard
 function displayLeaderboard(sortedLeaderboard) {
-  console.table(sortedLeaderboard);
   const scoreboardList = sortedLeaderboard
     .map(
       (team, index) => `<div class="table-row">
@@ -234,7 +224,7 @@ function displayLeaderboard(sortedLeaderboard) {
     )
     .join('');
   const scoreboardHeader = `
-    <div class="table-wrap">
+    <div class="table-wrapper">
       <div class="table-grid fixed-header">
         <div class="table-header table-row">
           <div class="fixed-col">#</div>
