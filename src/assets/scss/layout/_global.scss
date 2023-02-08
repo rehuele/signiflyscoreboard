@@ -69,9 +69,14 @@ header {
 // ------------------------------------
 
 .btn-admin {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	place-content: center space-evenly;
+	margin: 0 auto;
 	padding: calc(var(--spacer)/2) var(--spacer);
 	min-width: 140px;
-	font-size: 16px;
+	font-size: 1rem;
 	font-weight: 400;
 	font-family: var(--font-primary);
 	text-transform: uppercase;

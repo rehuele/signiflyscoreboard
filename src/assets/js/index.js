@@ -251,6 +251,13 @@ btnAdmin.addEventListener('click', function(e) {
   const scoreInputs = document.querySelectorAll('.fs-matches input');
   scoreInputs.forEach(scoreInput => {
     scoreInput.disabled = !scoreInput.disabled;
+
+    if (!scoreInput.disabled) {
+      console.log(btnAdmin);
+      btnAdmin.innerHTML = 'Admin <span class="material-symbols-outlined">lock_open</span>'
+    } else {
+      btnAdmin.innerHTML = 'Admin <span class="material-symbols-outlined">lock</span>'
+    }
   });
 });
 
