@@ -60,3 +60,4 @@ Temporary Items
 .parcel-cache
 node_modules
 dist
+docs/assets
