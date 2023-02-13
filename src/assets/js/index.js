@@ -81,7 +81,7 @@ function displayMatches() {
               <h3 class="fs-team__name">${team1}</h3>
               <ul class="fs-team__players">${listItem(teamsList[teamName1Index].players)}</ul>
             </div>
-            <input type="number" name="scoreTeam1" min="0" value="${scoreTeam1 != '' || null ? scoreTeam1 : 0}" class="fs-team__score-1 scoreTeam1" disabled>
+            <input type="number" inputmode="numeric" name="scoreTeam1" min="0" value="${scoreTeam1 != '' || null ? scoreTeam1 : 0}" class="fs-team__score-1 scoreTeam1" disabled>
           </div>
           <div class="fs-team__divider"><span>:</span></div>
           <div class="fs-team fs-name__team-2">
@@ -92,7 +92,7 @@ function displayMatches() {
               <h3 class="fs-team__name">${team2}</h3>
               <ul class="fs-team__players">${listItem(teamsList[teamName2Index].players)}</ul>
             </div>
-            <input type="number" name="scoreTeam2" min="0" value="${scoreTeam2 != '' || null ? scoreTeam2 : 0}" class="fs-team__score-2 scoreTeam2" disabled>
+            <input type="number" inputmode="numeric" name="scoreTeam2" min="0" value="${scoreTeam2 != '' || null ? scoreTeam2 : 0}" class="fs-team__score-2 scoreTeam2" disabled>
           </div>
         </div>
       </div>
@@ -117,9 +117,9 @@ function updateScore(dataId, scoreTeam, scoreTeamValue) {
     [name]: parseInt(scoreTeamValue)
   };
 
-  const currentMatchList = Object.assign(matchList[res], item);
+  Object.assign(matchList[res], item);
   const keyfifasignifly = fifasignifly['matches'];
-  const source = Object.assign(keyfifasignifly, matchList);
+  Object.assign(keyfifasignifly, matchList);
   localStorage.setItem('fsjson', JSON.stringify(fifasignifly))
   calculateLeaderboard();
 }

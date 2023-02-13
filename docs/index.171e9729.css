@@ -121,17 +121,26 @@ header {
 
 .btn-admin {
   padding: calc(var(--spacer) / 2) var(--spacer);
-  min-width: 140px;
-  font-size: 16px;
-  font-weight: 400;
+  font-size: 15px;
+  font-weight: 300;
   font-family: var(--font-primary);
   text-transform: uppercase;
   color: var(--white);
   border: 2px solid var(--white);
   cursor: pointer;
   background-color: #0000;
-  border-radius: 8px;
+  border-radius: 4px;
+  flex-direction: row;
+  place-content: center space-evenly;
+  align-items: center;
+  margin: 0 auto;
   transition: all .4s;
+  display: flex;
+}
+
+.btn-admin > span {
+  padding-right: calc(var(--spacer) / 2);
+  font-size: 22px;
 }
 
 .btn-admin:hover {
@@ -176,18 +185,25 @@ header {
 .fs-match {
   margin-bottom: calc(var(--spacer) / 2);
   background-color: var(--white);
+  border: 1px solid var(--offgrey);
   border-radius: 10px;
   box-shadow: 0 0 2px #3030301a, 0 4px 4px #3030301a;
+}
+
+@media (min-width: 768px) {
+  .fs-match {
+    margin-bottom: var(--spacer);
+  }
 }
 
 .fs-match__header {
   padding: calc(var(--spacer) / 2) var(--spacer);
   text-align: right;
-  border-bottom: 2px solid #3030301a;
+  border-bottom: 2px solid var(--offgrey);
 }
 
 .fs-match__number {
-  color: var(--offgrey);
+  color: var(--secondary-color);
   margin: 0;
   font-size: 1rem;
   font-weight: 500;
@@ -216,7 +232,7 @@ header {
 }
 
 .fs-team__divider {
-  color: var(--offgrey);
+  color: var(--secondary-color);
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -262,7 +278,7 @@ header {
 
 .fs-team__players {
   text-align: center;
-  color: var(--secondary-color);
+  color: #666;
   font-size: 14px;
   font-weight: 400;
   line-height: 1.2;
@@ -296,6 +312,7 @@ header {
 
 .table-wrapper {
   max-width: 960px;
+  border: 1px solid var(--offgrey);
   border-radius: 10px;
   margin: 2em auto;
   font-size: 14px;
@@ -320,7 +337,7 @@ header {
 
 .table-row {
   background-color: var(--white);
-  grid-template-columns: 50px 100px repeat(4, minmax(70px, auto));
+  grid-template-columns: 50px 160px repeat(4, minmax(70px, auto));
   display: grid;
 }
 
@@ -365,6 +382,33 @@ header {
 @media (min-width: 768px) {
   .fixed-col {
     box-shadow: none;
+  }
+}
+
+.table-flex {
+  flex-direction: row;
+  place-content: center flex-start;
+  align-items: center;
+  display: flex;
+}
+
+.table-logo {
+  width: 35px;
+  height: 35px;
+  margin-right: var(--spacer);
+  margin-left: var(--spacer);
+  background-color: var(--white);
+  border-radius: 50%;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  box-shadow: 0 2px 2px #30303026, 0 0 0 4px #f3f5f9;
+}
+
+@media (min-width: 768px) {
+  .table-logo {
+    margin-right: calc(var(--spacer) * 2);
+    margin-left: calc(var(--spacer) * 2);
   }
 }
 

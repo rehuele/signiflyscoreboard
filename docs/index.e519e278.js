@@ -36,7 +36,7 @@ const { number_teams: $c274fa293841a670$var$nbrTeams , number_players: $c274fa29
 // Display Matches
 function $c274fa293841a670$var$displayMatches() {
     const teamsList = $c274fa293841a670$var$fifasignifly.teams;
-    let gameList = [];
+    let tournamentList = [];
     $c274fa293841a670$var$matchList.forEach((match)=>{
         const { matchId: matchId , team1: team1 , team2: team2 , scoreTeam1: scoreTeam1 , scoreTeam2: scoreTeam2  } = match;
         // Returns Corresponding Team
@@ -54,7 +54,7 @@ function $c274fa293841a670$var$displayMatches() {
         }
         let teamName1Index = teamsList.findIndex(isTeamName1);
         let teamName2Index = teamsList.findIndex(isTeamName2);
-        gameList += `
+        tournamentList += `
       <div class="fs-match" data-match="${matchId}">
         <div class="fs-match__header">
           <h3 class="fs-match__number">Match ${matchId < 10 ? "0" + matchId : matchId}</h3>
@@ -68,7 +68,7 @@ function $c274fa293841a670$var$displayMatches() {
               <h3 class="fs-team__name">${team1}</h3>
               <ul class="fs-team__players">${listItem(teamsList[teamName1Index].players)}</ul>
             </div>
-            <input type="number" name="scoreTeam1" min="0" value="${scoreTeam1}" class="fs-team__score-1 scoreTeam1" disabled>
+            <input type="number" inputmode="numeric" name="scoreTeam1" min="0" value="${scoreTeam1 != "" || null ? scoreTeam1 : 0}" class="fs-team__score-1 scoreTeam1" disabled>
           </div>
           <div class="fs-team__divider"><span>:</span></div>
           <div class="fs-team fs-name__team-2">
@@ -79,13 +79,13 @@ function $c274fa293841a670$var$displayMatches() {
               <h3 class="fs-team__name">${team2}</h3>
               <ul class="fs-team__players">${listItem(teamsList[teamName2Index].players)}</ul>
             </div>
-            <input type="number" name="scoreTeam2" min="0" value="${scoreTeam2}" class="fs-team__score-2 scoreTeam2" disabled>
+            <input type="number" inputmode="numeric" name="scoreTeam2" min="0" value="${scoreTeam2 != "" || null ? scoreTeam2 : 0}" class="fs-team__score-2 scoreTeam2" disabled>
           </div>
         </div>
       </div>
     `;
     });
-    $c274fa293841a670$var$fsMatches.innerHTML = gameList;
+    $c274fa293841a670$var$fsMatches.innerHTML = tournamentList;
 }
 // Sliding Menu
 function $c274fa293841a670$var$slideMenu() {
@@ -101,15 +101,16 @@ function $c274fa293841a670$var$updateScore(dataId, scoreTeam, scoreTeamValue) {
     const item = {
         [name]: parseInt(scoreTeamValue)
     };
-    const currentMatchList = Object.assign($c274fa293841a670$var$matchList[res], item);
+    Object.assign($c274fa293841a670$var$matchList[res], item);
     const keyfifasignifly = $c274fa293841a670$var$fifasignifly["matches"];
-    const source = Object.assign(keyfifasignifly, $c274fa293841a670$var$matchList);
+    Object.assign(keyfifasignifly, $c274fa293841a670$var$matchList);
     localStorage.setItem("fsjson", JSON.stringify($c274fa293841a670$var$fifasignifly));
     $c274fa293841a670$var$calculateLeaderboard();
 }
+// Fetch Input Info
 function $c274fa293841a670$var$handleInput(e) {
     const input = e.target;
-    const inputValue = e.target.value;
+    const inputValue = e.target.value == "" ? 0 : e.target.value;
     const parentId = e.target.closest(".fs-match");
     $c274fa293841a670$var$updateScore(parentId, input, inputValue);
 }
@@ -149,14 +150,21 @@ function $c274fa293841a670$var$calculateLeaderboard() {
         });
     });
     // Calculate Total Points in Leaderboard
-    // Win = 3 Points
-    // Tie = 1 Point
-    // Loss = 0 Points
+    // Win = 3 Points, Tie = 1 Point, Loss = 0 Points
     leaderboard.forEach((leader)=>{
         leader.points = leader.wins * 3 + leader.ties;
     });
     // Sort First to Last Team
     const sortedLeaderboard = leaderboard.sort((teamA, teamB)=>teamA.points < teamB.points ? 1 : teamA.points > teamB.points ? -1 : 0);
+    // Add Team Logo for each Team
+    sortedLeaderboard.forEach((team, index)=>{
+        const res = $c274fa293841a670$var$fifasignifly.teams.findIndex((equipe)=>equipe.name == team.id);
+        const image = $c274fa293841a670$var$fifasignifly.teams[res].image;
+        const item = {
+            logo: image
+        };
+        Object.assign(sortedLeaderboard[index], item);
+    });
     // Config nbrTeams: Limit number of Teams Shown
     const splicedSortedLeaderboard = sortedLeaderboard.slice(0, $c274fa293841a670$var$nbrTeams);
     $c274fa293841a670$var$displayLeaderboard(splicedSortedLeaderboard);
@@ -165,7 +173,7 @@ function $c274fa293841a670$var$calculateLeaderboard() {
 function $c274fa293841a670$var$displayLeaderboard(sortedLeaderboard) {
     const scoreboardList = sortedLeaderboard.map((team, index)=>`<div class="table-row">
         <div class="fixed-col">${index + 1}</div>
-        <div>${team.id}</div>
+        <div class="table-flex"><div class="table-logo"><img src="${team.logo.src}" alt="${team.logo.alt}"></div> ${team.id}</div>
         <div>${team.wins}</div>
         <div>${team.ties}</div>
         <div>${team.loss}</div>
@@ -197,6 +205,8 @@ $c274fa293841a670$var$btnAdmin.addEventListener("click", function(e) {
     const scoreInputs = document.querySelectorAll(".fs-matches input");
     scoreInputs.forEach((scoreInput)=>{
         scoreInput.disabled = !scoreInput.disabled;
+        if (!scoreInput.disabled) $c274fa293841a670$var$btnAdmin.innerHTML = '<span class="material-symbols-outlined">lock_open</span> Admin';
+        else $c274fa293841a670$var$btnAdmin.innerHTML = '<span class="material-symbols-outlined">lock</span> Admin';
     });
 });
 $c274fa293841a670$var$fsMatches.addEventListener("input", $c274fa293841a670$var$handleInput);
