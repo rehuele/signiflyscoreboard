@@ -40,7 +40,7 @@ const { number_teams: nbrTeams, number_players: nbrPlayers } = fsconfig;
 // Display Matches
 function displayMatches() {
   const teamsList = fifasignifly.teams;
-  let gameList = [];
+  let tournamentList = [];
 
   matchList.forEach(match => {
     const { matchId, team1, team2, scoreTeam1, scoreTeam2 } = match;
@@ -67,7 +67,7 @@ function displayMatches() {
     let teamName1Index = teamsList.findIndex(isTeamName1);
     let teamName2Index = teamsList.findIndex(isTeamName2);
 
-    gameList += `
+    tournamentList += `
       <div class="fs-match" data-match="${matchId}">
         <div class="fs-match__header">
           <h3 class="fs-match__number">Match ${matchId < 10 ? '0' + matchId : matchId}</h3>
@@ -81,7 +81,7 @@ function displayMatches() {
               <h3 class="fs-team__name">${team1}</h3>
               <ul class="fs-team__players">${listItem(teamsList[teamName1Index].players)}</ul>
             </div>
-            <input type="number" name="scoreTeam1" min="0" value="${scoreTeam1}" class="fs-team__score-1 scoreTeam1" disabled>
+            <input type="number" name="scoreTeam1" min="0" value="${scoreTeam1 != '' || null ? scoreTeam1 : 0}" class="fs-team__score-1 scoreTeam1" disabled>
           </div>
           <div class="fs-team__divider"><span>:</span></div>
           <div class="fs-team fs-name__team-2">
@@ -92,13 +92,13 @@ function displayMatches() {
               <h3 class="fs-team__name">${team2}</h3>
               <ul class="fs-team__players">${listItem(teamsList[teamName2Index].players)}</ul>
             </div>
-            <input type="number" name="scoreTeam2" min="0" value="${scoreTeam2}" class="fs-team__score-2 scoreTeam2" disabled>
+            <input type="number" name="scoreTeam2" min="0" value="${scoreTeam2 != '' || null ? scoreTeam2 : 0}" class="fs-team__score-2 scoreTeam2" disabled>
           </div>
         </div>
       </div>
     `;
   });
-  fsMatches.innerHTML = gameList;
+  fsMatches.innerHTML = tournamentList;
 }
 
 // Sliding Menu
@@ -124,9 +124,10 @@ function updateScore(dataId, scoreTeam, scoreTeamValue) {
   calculateLeaderboard();
 }
 
+// Fetch Input Info
 function handleInput(e) {
   const input = e.target;
-  const inputValue = e.target.value;
+  const inputValue = e.target.value == '' ? 0 : e.target.value;
   const parentId = e.target.closest('.fs-match');
   updateScore(parentId, input, inputValue);
 }
@@ -193,16 +194,24 @@ function calculateLeaderboard() {
   });
 
   // Calculate Total Points in Leaderboard
-  // Win = 3 Points
-  // Tie = 1 Point
-  // Loss = 0 Points
-  leaderboard.forEach((leader) => {
+  // Win = 3 Points, Tie = 1 Point, Loss = 0 Points
+  leaderboard.forEach(leader => {
     leader.points = (leader.wins * 3) + leader.ties;
   });
 
   // Sort First to Last Team
   const sortedLeaderboard = leaderboard.sort((teamA, teamB) => (teamA.points < teamB.points) ? 1 : (teamA.points > teamB.points) ? -1 : 0);
-  
+
+  // Add Team Logo for each Team
+  sortedLeaderboard.forEach((team, index) => {
+    const res = fifasignifly.teams.findIndex((equipe) => equipe.name == team.id);
+    const image = fifasignifly.teams[res].image;
+    const item = {
+      logo: image
+    };
+    Object.assign(sortedLeaderboard[index], item);
+  });
+
   // Config nbrTeams: Limit number of Teams Shown
   const splicedSortedLeaderboard = sortedLeaderboard.slice(0, nbrTeams);
 
@@ -215,7 +224,7 @@ function displayLeaderboard(sortedLeaderboard) {
     .map(
       (team, index) => `<div class="table-row">
         <div class="fixed-col">${index +1}</div>
-        <div>${team.id}</div>
+        <div class="table-flex"><div class="table-logo"><img src="${team.logo.src}" alt="${team.logo.alt}"></div> ${team.id}</div>
         <div>${team.wins}</div>
         <div>${team.ties}</div>
         <div>${team.loss}</div>
@@ -253,10 +262,9 @@ btnAdmin.addEventListener('click', function(e) {
     scoreInput.disabled = !scoreInput.disabled;
 
     if (!scoreInput.disabled) {
-      console.log(btnAdmin);
-      btnAdmin.innerHTML = 'Admin <span class="material-symbols-outlined">lock_open</span>'
+      btnAdmin.innerHTML = '<span class="material-symbols-outlined">lock_open</span> Admin'
     } else {
-      btnAdmin.innerHTML = 'Admin <span class="material-symbols-outlined">lock</span>'
+      btnAdmin.innerHTML = '<span class="material-symbols-outlined">lock</span> Admin'
     }
   });
 });
